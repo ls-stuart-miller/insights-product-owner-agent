@@ -1,0 +1,152 @@
+# squad.yaml — Reporting, Insights & Benchmarks team configuration
+#
+# Update `pto_this_sprint` before each sprint planning run.
+# The agent will also prompt for capacity changes at runtime — editing this
+# file is optional for one-off adjustments.
+#
+# IMPORTANT: Repository assignments below are reasonable defaults based on role.
+# Please confirm with each engineer and update primary_repos / secondary_repos accordingly.
+#
+# NOTE: Divyang Joshi's Jira email had a typo in the source file (missing @).
+# Assumed to be divyang.joshi@lightspeedhq.com — please confirm.
+
+squad:
+  name: Reporting, Insights & Benchmarks
+  jira_project: LSH
+  jira_team_name: "Reporting, Insights & Benchmarks (HOS)"
+  jira_team_uuid: "857e08e4-972a-4190-af30-e215a842ffba"
+  github_org: lightspeed-hospitality
+  sprint_cadence_days: 14
+  velocity_lookback_sprints: 5
+  ceremony_overhead_pct: 15  # standups, sprint ceremonies, misc meetings (~15% of sprint)
+
+  # Repos owned by this team
+  repos:
+    - insights-service           # backend: Insights data service
+    - lighthouse-insights        # frontend: current reports UI
+    - open-search-service        # backend: search and query layer
+    - automated-reporting-service  # backend: automated report generation
+    - hospitality-platform       # frontend: migration target for new components
+
+members:
+
+  # ─── Backend Engineers ──────────────────────────────────────────────────────
+
+  - name: Peter Scardera
+    jira_user: peter.scardera@lightspeedhq.com
+    github_handle: peterscardera2
+    role: Senior Backend Engineer
+    title: Team Lead
+    is_team_lead: true
+    primary_repos:
+      - insights-service
+    secondary_repos:
+      - open-search-service
+      - automated-reporting-service
+    capacity_days_per_sprint: 8
+    pto_this_sprint: 0
+    notes: >
+      Team lead — reserve ~20% of capacity for code review, unplanned support,
+      and cross-team coordination. Assign highest-complexity backend work here.
+
+  - name: Nick Nassar
+    jira_user: nicholas.nassar@lightspeedhq.com
+    github_handle: ls-nicholas-nassar
+    role: Senior Backend Engineer
+    primary_repos:
+      - insights-service
+    secondary_repos:
+      - automated-reporting-service
+    capacity_days_per_sprint: 8
+    pto_this_sprint: 0
+
+  - name: Anthony Piche
+    jira_user: anthony.piche@lightspeedhq.com
+    github_handle: ls-anthony-piche
+    role: Senior Backend Engineer
+    primary_repos:
+      - automated-reporting-service
+    secondary_repos:
+      - insights-service
+    capacity_days_per_sprint: 8
+    pto_this_sprint: 0
+
+  - name: Sebastien Dion
+    jira_user: sebastien.dion@lightspeedhq.com
+    github_handle: ls-sebastien-dion
+    role: Senior Backend Engineer
+    primary_repos:
+      - open-search-service
+    secondary_repos:
+      - insights-service
+    capacity_days_per_sprint: 8
+    pto_this_sprint: 0
+
+  # ─── Frontend Engineers ─────────────────────────────────────────────────────
+
+  - name: Sori Han
+    jira_user: sori.han@lightspeedhq.com
+    github_handle: sorihan01
+    role: Frontend Engineer
+    primary_repos:
+      - lighthouse-insights
+    secondary_repos:
+      - hospitality-platform
+    capacity_days_per_sprint: 8
+    pto_this_sprint: 0
+
+  - name: Divyang Joshi
+    jira_user: divyang.joshi@lightspeedhq.com  # CONFIRM: source had typo (missing @)
+    github_handle: divyang-joshi
+    role: Senior Frontend Engineer
+    primary_repos:
+      - lighthouse-insights
+    secondary_repos:
+      - hospitality-platform
+    capacity_days_per_sprint: 8
+    pto_this_sprint: 0
+
+  # ─── Architect ──────────────────────────────────────────────────────────────
+
+  - name: Todd Lunter
+    jira_user: todd.lunter@lightspeedhq.com
+    github_handle: ls-todd-lunter
+    role: Architect
+    primary_repos:
+      - insights-service
+      - lighthouse-insights
+      - open-search-service
+      - automated-reporting-service
+      - hospitality-platform
+    secondary_repos: []
+    capacity_days_per_sprint: 0  # Excluded from sprint capacity — self-manages workload
+    pto_this_sprint: 0
+    notes: >
+      Cross-team technical leader. Not included in sprint capacity calculations.
+      Consult for architectural decisions on any L or XL tickets.
+
+  # ─── Design ─────────────────────────────────────────────────────────────────
+
+  - name: Anurag Bhattacharya
+    jira_user: anurag.bhattacharya@lightspeedhq.com
+    github_handle: AnuragLS
+    role: Senior Designer
+    primary_repos: []
+    secondary_repos: []
+    capacity_days_per_sprint: 0  # Design capacity tracked separately from dev
+    pto_this_sprint: 0
+    notes: >
+      Design work runs on a separate track. Flag any dev ticket that requires
+      design input but lacks a spec — surface it to Anurag before committing
+      the ticket to the sprint.
+
+  # ─── Product ─────────────────────────────────────────────────────────────────
+
+  - name: Stuart Miller
+    jira_user: stuart.miller@lightspeedhq.com
+    github_handle: ls-stuart-miller
+    role: Product Manager
+    primary_repos: []
+    secondary_repos: []
+    capacity_days_per_sprint: 0  # PM not included in engineering capacity
+    pto_this_sprint: 0
