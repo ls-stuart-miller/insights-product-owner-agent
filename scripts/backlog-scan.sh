@@ -14,7 +14,7 @@ set -euo pipefail
 # ── Defaults ─────────────────────────────────────────────────────────────────
 TEAM_UUID="857e08e4-972a-4190-af30-e215a842ffba"
 PROJECT="LSH"
-ZENDESK_FIELD=""   # e.g. "cf[10100]" — leave empty if not yet discovered
+ZENDESK_FIELD="cf[10074]"   # Zendesk Ticket Count field (confirmed)
 LIMIT=50
 
 # ── Arg parsing ──────────────────────────────────────────────────────────────

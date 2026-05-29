@@ -34,28 +34,18 @@ Look for a field with a numeric count value that corresponds to linked Zendesk t
 | Team                | `customfield_10001` | Team UUID assignment                      | Confirmed  |
 | Sprint              | `customfield_10020` | Active sprint                             | Confirmed  |
 | Story Points        | `customfield_10016` | Story point estimate (standard field)     | Confirmed  |
-| Zendesk Ticket Count | **TBD**            | Count of linked Zendesk support tickets   | Not yet    |
+| Zendesk Ticket Count | `cf[10074]`         | Count of linked Zendesk support tickets   | Confirmed  |
 
 ---
 
 ## How to Use the Zendesk Field
 
-Once discovered, update `scripts/backlog-scan.sh` line:
+The field is already configured in `scripts/backlog-scan.sh` as `cf[10074]`.
+
+To override at runtime:
 
 ```bash
-ZENDESK_FIELD=""   # e.g. "cf[10100]" — leave empty if not yet discovered
-```
-
-Change to:
-
-```bash
-ZENDESK_FIELD="cf[XXXXX]"   # your discovered field ID
-```
-
-Or pass it at runtime:
-
-```bash
-bash scripts/backlog-scan.sh --team-uuid "857e08e4-..." --zendesk-field "cf[10100]"
+bash scripts/backlog-scan.sh --team-uuid "857e08e4-..." --zendesk-field "cf[10074]"
 ```
 
 ---
