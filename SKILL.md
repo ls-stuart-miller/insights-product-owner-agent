@@ -74,20 +74,29 @@ Read `squad.yaml` from this skill's base directory.
 Extract for use throughout:
 - All members where `capacity_days_per_sprint > 0` — these are your **active engineers**
 - Each engineer's `primary_repos` and `secondary_repos`
-- Each engineer's `capacity_days_per_sprint` minus `pto_this_sprint`
+- Each engineer's `capacity_days_per_sprint` (PTO is confirmed below, not read from file)
 - The `ceremony_overhead_pct` for capacity deduction
 
-Then ask the PM:
+**PTO prompt — run this before anything else.** List each active engineer with
+their default sprint capacity and ask the PM to flag anyone who is fully or
+partially unavailable. Be explicit so nothing is missed:
 
-> "Before I start the backlog scan — any capacity changes this sprint I should
-> know about? (PTO, hiring loops, on-call rotations, team events)"
+> "Before I start the backlog scan, let me confirm availability for this sprint.
+> Default capacities are:
+>
+> - Peter Scardera — 2d
+> - Nick Nassar — 8d
+> - Anthony Piche — 8d
+> - Sebastien Dion — 8d
+> - Sori Han — 8d
+> - Divyang Joshi — 8d
+>
+> Is anyone off or partially unavailable? (e.g. 'Nick has 2 days PTO', 'Sori
+> is on leave all week', 'Anthony has an interview loop on Thursday')"
 
-Update in-memory capacity values based on their response. **Do not write to
-`squad.yaml`** unless they explicitly ask you to persist changes.
-
-**Team Lead note:** Peter Scardera is the team lead (`is_team_lead: true`).
-Automatically reserve 20% of his available days for code review and unplanned
-support. Reduce his assignable capacity by that amount before planning.
+Parse their response and build a PTO map (name → days absent). Store it for
+use in Phase 5 when calling `capacity.sh --pto "Name:days,Name:days"`.
+**Do not write PTO back to `squad.yaml`** — it is runtime state only.
 
 ---
 
@@ -263,8 +272,7 @@ bash scripts/capacity.sh --squad-file squad.yaml
 
 Apply any PTO adjustments confirmed in Phase 1 via `--pto "Name:days,Name:days"`.
 
-This gives you `available_days` per active engineer. Subtract Peter's 20%
-team lead buffer before allocating work.
+This gives you `assignable_days` per active engineer.
 
 **Step 5b: Rank and select bugs**
 
@@ -399,14 +407,14 @@ FEATURE WORK PROPOSED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CAPACITY SUMMARY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Peter      6.0d available | 5.5d assigned  (+ 1.5d TL buffer)
+  Peter      1.7d available | 1.5d assigned
   Nick       6.8d available | 6.5d assigned
   Anthony    6.8d available | 6.0d assigned
   Sebastien  6.8d available | 6.0d assigned
   Sori       6.8d available | 6.5d assigned
   Divyang    6.8d available | 6.0d assigned
   ─────────────────────────────────────────
-  Total     40.0d available | 36.5d assigned  (91%)
+  Total     36.7d available | 32.5d assigned  (89%)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 

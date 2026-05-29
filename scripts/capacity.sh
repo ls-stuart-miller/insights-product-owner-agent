@@ -123,13 +123,10 @@ for m in members:
     net = (base_capacity - pto) * (1 - overhead_pct)
     net = round(net, 1)
 
-    # Team lead: reserve 20% for code review + unplanned work
+    # No additional TL buffer — Peter's capacity_days_per_sprint already
+    # reflects his management load (2–3d vs the standard 8d for ICs).
+    net_assignable = net
     team_lead_buffer = 0.0
-    if m.get("is_team_lead", False):
-        team_lead_buffer = round(net * 0.20, 1)
-        net_assignable = round(net - team_lead_buffer, 1)
-    else:
-        net_assignable = net
 
     total_available += net_assignable
 

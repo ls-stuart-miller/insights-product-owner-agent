@@ -1,8 +1,7 @@
 # squad.yaml — Reporting, Insights & Benchmarks team configuration
 #
-# Update `pto_this_sprint` before each sprint planning run.
-# The agent will also prompt for capacity changes at runtime — editing this
-# file is optional for one-off adjustments.
+# PTO is NOT tracked here — it is confirmed via a live prompt at the start of
+# each sprint planning run. This avoids stale values between sprints.
 #
 # IMPORTANT: Repository assignments below are reasonable defaults based on role.
 # Please confirm with each engineer and update primary_repos / secondary_repos accordingly.
@@ -43,11 +42,12 @@ members:
     secondary_repos:
       - open-search-service
       - automated-reporting-service
-    capacity_days_per_sprint: 8
-    pto_this_sprint: 0
+    capacity_days_per_sprint: 2  # 2–3 days — primarily operating as manager
     notes: >
-      Team lead — reserve ~20% of capacity for code review, unplanned support,
-      and cross-team coordination. Assign highest-complexity backend work here.
+      Engineering manager — capacity is already reduced to reflect management
+      duties. Assign only the highest-complexity backend work that requires
+      his direct involvement. Do not apply an additional TL buffer on top of
+      this capacity figure.
 
   - name: Nick Nassar
     jira_user: nicholas.nassar@lightspeedhq.com
@@ -58,7 +58,6 @@ members:
     secondary_repos:
       - automated-reporting-service
     capacity_days_per_sprint: 8
-    pto_this_sprint: 0
 
   - name: Anthony Piche
     jira_user: anthony.piche@lightspeedhq.com
@@ -69,7 +68,6 @@ members:
     secondary_repos:
       - insights-service
     capacity_days_per_sprint: 8
-    pto_this_sprint: 0
 
   - name: Sebastien Dion
     jira_user: sebastien.dion@lightspeedhq.com
@@ -80,7 +78,6 @@ members:
     secondary_repos:
       - insights-service
     capacity_days_per_sprint: 8
-    pto_this_sprint: 0
 
   # ─── Frontend Engineers ─────────────────────────────────────────────────────
 
@@ -93,7 +90,6 @@ members:
     secondary_repos:
       - hospitality-platform
     capacity_days_per_sprint: 8
-    pto_this_sprint: 0
 
   - name: Divyang Joshi
     jira_user: divyang.joshi@lightspeedhq.com  # CONFIRM: source had typo (missing @)
@@ -104,7 +100,6 @@ members:
     secondary_repos:
       - hospitality-platform
     capacity_days_per_sprint: 8
-    pto_this_sprint: 0
 
   # ─── Architect ──────────────────────────────────────────────────────────────
 
@@ -120,7 +115,6 @@ members:
       - hospitality-platform
     secondary_repos: []
     capacity_days_per_sprint: 0  # Excluded from sprint capacity — self-manages workload
-    pto_this_sprint: 0
     notes: >
       Cross-team technical leader. Not included in sprint capacity calculations.
       Consult for architectural decisions on any L or XL tickets.
@@ -134,7 +128,6 @@ members:
     primary_repos: []
     secondary_repos: []
     capacity_days_per_sprint: 0  # Design capacity tracked separately from dev
-    pto_this_sprint: 0
     notes: >
       Design work runs on a separate track. Flag any dev ticket that requires
       design input but lacks a spec — surface it to Anurag before committing
@@ -149,4 +142,3 @@ members:
     primary_repos: []
     secondary_repos: []
     capacity_days_per_sprint: 0  # PM not included in engineering capacity
-    pto_this_sprint: 0
